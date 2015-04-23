@@ -357,6 +357,7 @@ struct audio_stream_out {
     int (*get_render_position)(const struct audio_stream_out *stream,
                                uint32_t *dsp_frames);
 
+#ifndef ICS_AUDIO_BLOB
 #ifdef QCOM_DIRECTTRACK
     /**
      * start audio data rendering
@@ -367,7 +368,6 @@ struct audio_stream_out {
      * stop audio data rendering
      */
     int (*stop)(struct audio_stream_out *stream);
-#endif
 
     /**
      * get the local time at which the next write to the audio driver will be presented.
@@ -450,7 +450,6 @@ struct audio_stream_out {
     int (*get_presentation_position)(const struct audio_stream_out *stream,
                                uint64_t *frames, struct timespec *timestamp);
 
-#ifdef QCOM_DIRECTTRACK
     /**
     * return the current timestamp after quering to the driver
      */
@@ -473,6 +472,7 @@ struct audio_stream_out {
      */
     int (*is_buffer_available) (const struct audio_stream_out *stream,
                                      int *isAvail);
+#endif
 #endif
 };
 typedef struct audio_stream_out audio_stream_out_t;
@@ -626,6 +626,8 @@ struct audio_hw_device {
      * playing, and AUDIO_MODE_IN_CALL when a call is in progress.
      */
     int (*set_mode)(struct audio_hw_device *dev, audio_mode_t mode);
+    int (*dummy1)();
+    int (*dummy2)();
 
     /* mic mute */
     int (*set_mic_mute)(struct audio_hw_device *dev, bool state);
@@ -678,6 +680,7 @@ struct audio_hw_device {
 
     void (*close_broadcast_stream)(struct audio_hw_device *dev,
                                    struct audio_broadcast_stream *out);
+#endif
 #endif
 
     /** This method creates and opens the audio hardware input stream */
