@@ -124,16 +124,19 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     file_contexts \
-    mediaserver.te \
     bootanim.te \
     property_contexts \
     device.te \
     gpsd.te \
     init.te \
     immvibed.te \
+    system_server.te \
+    system_app.te \
+    bkmgrd.te \
     kernel.te \
     macloader.te \
     rild.te \
     shell.te \
     netd.te \
+    vold.te \
     surfaceflinger.te \
